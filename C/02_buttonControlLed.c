@@ -19,6 +19,7 @@ int main(void){
 		return 1; 
 	}
 	
+	int onOff = 0;		/* otherwise, pi is too fast filling the buffer with printf commands */
 	pinMode(LedPin, OUTPUT); 
 	pinMode(ButtonPin, INPUT);
 	// Pull up to 3.3V,make GPIO1 a stable level
@@ -47,14 +48,19 @@ int main(void){
 		if(digitalRead(ButtonPin) == 0){
 			// Led on
 			digitalWrite(LedPin, LOW);
-			printf("...LED on\n");
+			if (onOff == 0) {
+			  printf("...LED on\n");
+			  onOff = 1;
+			}
 		}
 		else{
 			// Led off
 			digitalWrite(LedPin, HIGH);
-			printf("LED off...\n");
+			if (onOff == 1) {
+			  printf("LED off...\n");
+			  onOff = 0;
+			}
 		}
 	}
 	return 0;
 }
-
