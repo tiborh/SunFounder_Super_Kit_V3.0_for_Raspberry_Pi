@@ -63,7 +63,7 @@ int main(void){
 		}
 		// Turn LED off from right to left
 		printf("From right to left.\n");
-		for(i=8;i>=0;i--){
+		for(i=7;i>=0;i--){ /* to avoid the double blink of the last LED */
 			led_on(i);
 			delay(100);
 			led_off(i);
